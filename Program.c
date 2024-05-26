@@ -8,6 +8,7 @@ void printCurrentState(char(*)[N]);
 void reset(char(*)[N]);
 void convertTo2D(int index, int *row, int *column);
 void convertTo1D(int row, int column, int *index);
+int get1DIndex(int row, int column);
 char getCharAtIndex(int index, char(*)[N]);
 bool fillSpace (char player, int index, char(*)[N]);
 bool checkRows(char game[N][N]);
@@ -57,7 +58,6 @@ int main () {
 
 		//Everytime something is changed Print the game
 		printCurrentState(tickTackToe);
-		printf("%c %c %c \n", tickTackToe[0][0], tickTackToe[0][1], tickTackToe[0][2]);
 	}
 } 
 
@@ -83,23 +83,27 @@ void printCurrentState(char game[N][N]) {
 	int row;
 	int column;
 
-	int rows = N;
-	int columns = N;
+	char _1 = ((game[0][0] == ' ') ? '1' : game[0][0]);
+	char _2 = ((game[0][1] == ' ') ? '2' : game[0][1]);
+	char _3 = ((game[0][2] == ' ') ? '3' : game[0][2]);
+	char _4 = ((game[1][0] == ' ') ? '4' : game[1][0]);
+	char _5 = ((game[1][1] == ' ') ? '5' : game[1][1]);
+	char _6 = ((game[1][2] == ' ') ? '6' : game[1][2]);
+	char _7 = ((game[2][0] == ' ') ? '7' : game[2][0]);
+	char _8 = ((game[2][1] == ' ') ? '8' : game[2][1]);
+	char _9 = ((game[2][2] == ' ') ? '9' : game[2][2]);
 
-	for (row = 0; row < N; row++) {
-		for (column = 0; column < N; column++) {
-			char choice = game[row][column];
-			bool isEmpty = (choice == ' ');
-
-			if (isEmpty) {
-				int _1DPosition = row * columns + column;
-				printf("%d ", _1DPosition+1);
-			} else {
-				printf("%c", choice);
-			}
-		}
-		printf("\n", "]");
-	}
+	 system("cls");
+	 printf("\n\t|\t|\n");
+	 printf("\t|\t|\n");
+	 printf("%c\t|%c\t|%c\n", _1, _2, _3);
+	 printf("--------|-------|--------\n");
+	 printf("\t|\t|\n");
+	 printf("%c\t|%c\t|%c\n", _4, _5, _6);
+	 printf("--------|-------|--------\n");
+	 printf("\t|\t|\n");
+	 printf("%c\t|%c\t|%c\n", _7, _8, _9);
+	 printf("\t|\t|\n");
 }
 
 void convertTo2D (int index, int *row, int *column) {
@@ -230,4 +234,8 @@ bool checkColumns(char game[N][N]) {
 
 void convertTo1D(int column, int row, int *index) {
 	*index = row * N + column;
+}
+
+int get1DIndex(int column, int row) {
+	return row * N + column;
 }
